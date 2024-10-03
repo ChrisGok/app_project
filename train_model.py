@@ -4,10 +4,11 @@ from sklearn.model_selection import train_test_split
 
 # Add the necessary imports for the starter code.
 import os
+import json
 import pandas as pd
 import pickle
 from ml.data import process_data
-from ml.model import train_model
+from ml.model import train_model, compute_model_metrics, inference
 
 # Add code to load in the data.
 
@@ -44,5 +45,43 @@ model = train_model(X_train, y_train)
 pickle.dump(model, open('./model/classifier.pkl', 'wb'))
 pickle.dump(encoder, open('./model/encoder.pkl', 'wb'))
 pickle.dump(lb, open('./model/lb.pkl', 'wb'))
+
+
+def slice_data(df, cat_feature):
+    """
+    Function which provides ml model metrics on data slices
+    """
+
+    # initialize object to store results
+    results = {}
+
+    for feature in df[cat_feature].unique():
+
+        df_temp = df[df[cat_feature] == feature]
+
+        # process data to calculate metrics as for the full model
+        X_slice, y_slice, _, _ = process_data(
+            df_temp, categorical_features=cat_features, label="salary", training=False, encoder=encoder, lb=lb
+        )
+
+        # make predictions 
+        feature_preds = inference(model=model, X=X_slice)
+
+        # calculate metrics
+        precision, recall, fbeta = compute_model_metrics(y_slice, feature_preds)
+
+        results[feature] = {
+            "precision": precision,
+            "recall": recall,
+            "fbeta": fbeta,
+            "categorical_feature": cat_feature
+        }
+
+    return results
+
+results_slice_metrics = slice_data(test, "education")
+with open("./output.txt","w") as file:
+    file.write(json.dumps(results_slice_metrics))
+
 
 
