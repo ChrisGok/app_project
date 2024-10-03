@@ -41,5 +41,8 @@ X_test, y_test, _, _ = process_data(
 
 model = train_model(X_train, y_train)
 
-filehandler = open('./model/classifier.pkl', 'wb') 
-pickle.dump(model, filehandler)
+pickle.dump(model, open('./model/classifier.pkl', 'wb'))
+pickle.dump(encoder, open('./model/encoder.pkl', 'wb'))
+pickle.dump(lb, open('./model/lb.pkl', 'wb'))
+
+
