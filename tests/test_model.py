@@ -25,7 +25,7 @@ def model():
     model = pickle.load(open("../model/classifier.pkl","rb"))
     return model
 
-@pytest.fixture
+""" @pytest.fixture
 def model_metrics():
     precision, recall, fbeta = compute_model_metrics(y_slice, feature_preds)
     return precision, recall, fbeta
@@ -34,7 +34,7 @@ def model_metrics():
 def processed_data():
     X_test, y_test, _, _ = process_data(
     test, categorical_features=cat_features, label="salary", training=False, encoder=encoder, lb=lb
-    )
+    ) """
 
 
 def test_data(census_data):
