@@ -24,9 +24,11 @@ cat_features = [
     "native-country",
 ]
 
-model = pickle.load(open('./model/classifier.pkl', 'rb'))
-encoder = pickle.load(open('./model/encoder.pkl', 'rb'))
-lb = pickle.load(open('./model/lb.pkl', 'rb'))
+file_path_base = os.path.join(os.getcwd(),'model')
+
+model = pickle.load(open(f'{file_path_base}/classifier.pkl', 'rb'))
+encoder = pickle.load(open(f'{file_path_base}/encoder.pkl', 'rb'))
+lb = pickle.load(open(f'{file_path_base}/lb.pkl', 'rb'))
 
 class Data(BaseModel):
     age: int
@@ -36,7 +38,7 @@ class Data(BaseModel):
     education_num: int = Field(..., alias="education-num")
     marital_status: str = Field(..., alias="marital-status")
     occupation: str
-    relationship: str
+    relationship: strode
     race: str
     sex: str
     capital_gain: int = Field(..., alias="capital-gain")
