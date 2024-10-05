@@ -1,5 +1,7 @@
 from sklearn.metrics import fbeta_score, precision_score, recall_score
-from sklearn.ensemble import AdaBoostClassifier
+from sklearn.ensemble import RandomForestClassifier
+
+
 
 
 # Optional: implement hyperparameter tuning.
@@ -18,8 +20,9 @@ def train_model(X_train, y_train):
     model
         Trained machine learning model.
     """
-
-    logit = AdaBoostClassifier()
+    # svc=SVC(probability=True, kernel='linear')
+    # logit = AdaBoostClassifier(n_estimators=50, base_estimator=svc, learning_rate=1, random_state=0)
+    logit = RandomForestClassifier(n_estimators= 1000)
     model = logit.fit(X_train, y_train)
 
     return model
