@@ -3,6 +3,4 @@ pytest
 flake8
 uvicorn
 pandas
-pickle
 pydantic
-os
