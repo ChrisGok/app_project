@@ -38,7 +38,7 @@ class Data(BaseModel):
     education_num: int = Field(..., alias="education-num")
     marital_status: str = Field(..., alias="marital-status")
     occupation: str
-    relationship: strode
+    relationship: str
     race: str
     sex: str
     capital_gain: int = Field(..., alias="capital-gain")
