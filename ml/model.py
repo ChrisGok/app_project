@@ -22,7 +22,9 @@ def train_model(X_train, y_train):
     """
     # svc=SVC(probability=True, kernel='linear')
     # logit = AdaBoostClassifier(n_estimators=50, base_estimator=svc, learning_rate=1, random_state=0)
-    logit = RandomForestClassifier(n_estimators= 1000)
+    logit = RandomForestClassifier(
+        # n_estimators= 1000
+        )
     model = logit.fit(X_train, y_train)
 
     return model
