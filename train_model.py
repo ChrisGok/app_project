@@ -84,4 +84,10 @@ with open("./output.txt","w") as file:
     file.write(json.dumps(results_slice_metrics))
 
 
+# Overall performance
+preds = inference(model, X_test)
+precision, recall, fbeta = compute_model_metrics(y_test, preds)
+print(f"precision, recall, fbeta: {precision}, {recall}, {fbeta}")
+
+
 
